@@ -51,7 +51,7 @@ namespace ToDoListApp
                 }
                 catch (System.Exception ex)
                 {
-                    System.Windows.MessageBox.Show(ex.Message, 
+                    System.Windows.MessageBox.Show(ex.ToString(), 
                         ex.GetType().Name, 
                         System.Windows.MessageBoxButton.OK, 
                         System.Windows.MessageBoxImage.Error);
