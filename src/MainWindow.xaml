@@ -1,0 +1,18 @@
+﻿    <Window x:Class="ToDoListApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="clr-namespace:ToDoListApp.Model" d:DataContext="{d:DesignInstance Type=model:ToDoModel}"
+        mc:Ignorable="d"
+        Title="To Do List" Height="600" Width="1030" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="..\NotePad.ico" Topmost="True">
+        
+    <Grid>
+        <DataGrid x:Name="DgToDoList" FontSize="15" FontWeight="Bold" Margin="10" AutoGenerateColumns="False" SelectionChanged="DgToDoList_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path = CreationDate}" IsReadOnly="True" Header="Creation Date:" Width="115"/>
+                <DataGridCheckBoxColumn Binding="{Binding Path = IsDone, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header="Is Done:" Width="70"/>
+                <DataGridTextColumn Binding="{Binding Path = Text}" IsReadOnly="False" Header="Task:" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

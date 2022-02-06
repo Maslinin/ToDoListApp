@@ -2,22 +2,21 @@
 
 namespace ToDoListApp.Model
 {
-    sealed class ToDoModel : INotifyPropertyChanged
+    public sealed class ToDoModel : INotifyPropertyChanged
     {
-        //Open field that will set the time automatically
-        public string CreationDate { get; private set; } = System.DateTime.Now.ToShortDateString();
-        //Completed task or not
-        public bool _IsDone { get; private set; }
-        //Task Field:
-        public string _Text { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string CreationDate => System.DateTime.Now.ToShortDateString();
+        private bool _IsDone;
+        private string _Text;
 
         //Property for the Status column
         public bool IsDone
         {
-            get { return _IsDone; }
+            get => _IsDone;
             set
             {
-                if (_IsDone == value) 
+                if (_IsDone == value)
                     return;
 
                 _IsDone = value;
@@ -28,10 +27,10 @@ namespace ToDoListApp.Model
         //Property for a column with a task
         public string Text
         {
-            get { return _Text; }
+            get => _Text;
             set
             {
-                if (_Text == value) 
+                if (_Text == value)
                     return;
 
                 _Text = value;
@@ -39,11 +38,8 @@ namespace ToDoListApp.Model
             }
         }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         //Processing of event (change) in the PropertyChanged
-        private void OnPropertyChanged(string PropertyName = "")
+        private void OnPropertyChanged(string PropertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }

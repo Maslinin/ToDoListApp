@@ -1,4 +1,5 @@
-﻿using ToDoListApp.IOService;
+﻿using System.Windows;
+using ToDoListApp.IOService;
 using ToDoListApp.Model;
 
 namespace ToDoListApp
@@ -6,35 +7,35 @@ namespace ToDoListApp
     /// <summary>
     /// Interaction Logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : System.Windows.Window
+    public partial class MainWindow : Window
     {
-        private static System.ComponentModel.BindingList<ToDoModel> _ToDoDataList;
-        private static readonly FileIOService _FileIOService = new FileIOService();
+        private System.ComponentModel.BindingList<ToDoModel> ToDoDataList;
+        private FileIO IOService => new FileIO();
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                _ToDoDataList = _FileIOService.LoadData();
+                ToDoDataList = IOService.LoadData();
             }
             catch(System.Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message,
+                MessageBox.Show(ex.Message,
                     ex.GetType().Name, 
-                    System.Windows.MessageBoxButton.OK, 
-                    System.Windows.MessageBoxImage.Error);
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
 
                 System.Environment.Exit(0);
             }
 
-            DgToDoList.ItemsSource = _ToDoDataList;
+            DgToDoList.ItemsSource = ToDoDataList;
 
-            _ToDoDataList.ListChanged += ToDoDataList_ListChanged;
+            ToDoDataList.ListChanged += ToDoDataList_ListChanged;
         }
 
         //Event handler when something changes in the list
@@ -47,20 +48,20 @@ namespace ToDoListApp
             {
                 try
                 {
-                    _FileIOService.SaveData(sender);
+                    IOService.SaveData(sender);
                 }
                 catch (System.Exception ex)
                 {
-                    System.Windows.MessageBox.Show(ex.ToString(), 
+                    MessageBox.Show(ex.ToString(), 
                         ex.GetType().Name, 
-                        System.Windows.MessageBoxButton.OK, 
-                        System.Windows.MessageBoxImage.Error);
+                        MessageBoxButton.OK, 
+                        MessageBoxImage.Error);
 
                     Close();
                 }
             }
         }
 
-        private void DgToDoList_SelectionChanged_1(object sender, System.Windows.Controls.SelectionChangedEventArgs e) { }
+        private void DgToDoList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) { }
     }
 }

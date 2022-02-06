@@ -9,7 +9,6 @@
 //------------------------------------------------------------------------------
 
 namespace ToDoListApp.Properties {
-    using System;
     
     
     /// <summary>
