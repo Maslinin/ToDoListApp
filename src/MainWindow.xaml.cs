@@ -1,6 +1,10 @@
-﻿using System.Windows;
-using ToDoListApp.IOService;
-using ToDoListApp.Model;
+﻿using System;
+using System.Windows;
+using System.ComponentModel;
+using System.Windows.Controls;
+using ToDoListApp.Models;
+using ToDoListApp.IOServices;
+using ToDoListApp.Exceptions;
 
 namespace ToDoListApp
 {
@@ -9,59 +13,56 @@ namespace ToDoListApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private System.ComponentModel.BindingList<ToDoModel> ToDoDataList;
-        private FileIO IOService => new FileIO();
+        private BindingList<ToDoModel> _toDoDataList;
+        private readonly IOService _ioService;
 
         public MainWindow()
         {
             InitializeComponent();
+            this._ioService = new IOService();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                ToDoDataList = IOService.LoadData();
+                this._ioService.CreateFileIfItDoesNotExists();
+                this._toDoDataList = this._ioService.LoadData();
             }
-            catch(System.Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show(ex.Message,
-                    ex.GetType().Name, 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error);
-
-                System.Environment.Exit(0);
+                ExceptionDisplayer.DisplayException(ex);
+                base.Close();
             }
 
-            DgToDoList.ItemsSource = ToDoDataList;
-
-            ToDoDataList.ListChanged += ToDoDataList_ListChanged;
+            this.DgToDoList.ItemsSource = this._toDoDataList;
+            this._toDoDataList.ListChanged += this.ToDoDataList_ListChanged;
         }
 
-        //Event handler when something changes in the list
-        private void ToDoDataList_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
+        private void ToDoDataList_ListChanged(object sender, ListChangedEventArgs e)
         {
-            //Events to which the sheet responds:
-            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemAdded || 
-                e.ListChangedType == System.ComponentModel.ListChangedType.ItemDeleted || 
-                e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+            if (this.ListChangedEventIsTriggered(e))
             {
                 try
                 {
-                    IOService.SaveData(sender);
+                    this._ioService.SaveData(sender);
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString(), 
-                        ex.GetType().Name, 
-                        MessageBoxButton.OK, 
-                        MessageBoxImage.Error);
-
-                    Close();
+                    ExceptionDisplayer.DisplayException(ex);
+                    base.Close();
                 }
             }
         }
 
-        private void DgToDoList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) { }
+        private bool ListChangedEventIsTriggered(ListChangedEventArgs e)
+        {
+            return e.ListChangedType == ListChangedType.ItemAdded ||
+                e.ListChangedType == ListChangedType.ItemDeleted ||
+                e.ListChangedType == ListChangedType.ItemChanged;
+        }
+
+        //empty event handler, because no specific behavior is required
+        private void DgToDoList_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
     }
 }

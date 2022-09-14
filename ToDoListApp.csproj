@@ -73,7 +73,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\IOService\FileIO.cs" />
+    <Compile Include="src\Culture\CultureCustomizer.cs" />
+    <Compile Include="src\Exceptions\Exceptions.cs" />
+    <Compile Include="src\IOServices\IOService.cs" />
     <Compile Include="src\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -110,5 +112,6 @@
   <ItemGroup>
     <Resource Include="NotePad.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

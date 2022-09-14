@@ -1,47 +1,47 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
-namespace ToDoListApp.Model
+namespace ToDoListApp.Models
 {
-    public sealed class ToDoModel : INotifyPropertyChanged
+    internal sealed class ToDoModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string CreationDate => System.DateTime.Now.ToShortDateString();
-        private bool _IsDone;
-        private string _Text;
+        private bool _isDone;
+        private string _text;
 
-        //Property for the Status column
+        public string CreationDate => DateTime.Now.ToShortDateString();
+
         public bool IsDone
         {
-            get => _IsDone;
+            get => this._isDone;
             set
             {
-                if (_IsDone == value)
+                if (this._isDone == value)
                     return;
 
-                _IsDone = value;
-                OnPropertyChanged("IsDone");
+                this._isDone = value;
+                this.OnPropertyChanged("IsDone");
             }
         }
 
-        //Property for a column with a task
         public string Text
         {
-            get => _Text;
+            get => this._text;
             set
             {
-                if (_Text == value)
+                if (this._text == value)
                     return;
 
-                _Text = value;
-                OnPropertyChanged("Text");
+                this._text = value;
+                this.OnPropertyChanged("Text");
             }
         }
 
         //Processing of event (change) in the PropertyChanged
         private void OnPropertyChanged(string PropertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
     }
 }
