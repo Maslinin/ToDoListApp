@@ -74,7 +74,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\Culture\CultureCustomizer.cs" />
-    <Compile Include="src\Exceptions\Exceptions.cs" />
+    <Compile Include="src\Exceptions\ExceptionDisplayer.cs" />
     <Compile Include="src\IOServices\IOService.cs" />
     <Compile Include="src\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
