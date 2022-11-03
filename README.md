@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/Maslinin/Consyzer/workflows/Build/badge.svg)](https://github.com/Maslinin/Consyzer/actions/workflows/build.yml) [![GitHub license](https://badgen.net/github/license/Maslinin/Consyzer)](https://github.com/Maslinin/Consyzer/blob/master/LICENSE)
+[![Build Status](https://github.com/Maslinin/ToDoListApp/workflows/Build/badge.svg)](https://github.com/Maslinin/ToDoListApp/actions/workflows/build.yml) [![GitHub license](https://badgen.net/github/license/Maslinin/ToDoListApp)](https://github.com/Maslinin/ToDoListApp/blob/master/LICENSE)
 
 # ToDoListApp
 GUI Notes Application [WPF]
