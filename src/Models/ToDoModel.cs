@@ -5,12 +5,12 @@ namespace ToDoListApp.Models
 {
     internal sealed class ToDoModel : INotifyPropertyChanged
     {
+        public static string CreationDate => DateTime.Now.ToShortDateString();
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private bool _isDone;
         private string _text;
-
-        public string CreationDate => DateTime.Now.ToShortDateString();
 
         public bool IsDone
         {

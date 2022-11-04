@@ -6,6 +6,7 @@
 		<UseWPF>true</UseWPF>
 		<ApplicationIcon>NotePad.ico</ApplicationIcon>
 		<StartupObject>ToDoListApp.App</StartupObject>
+		
 	</PropertyGroup>
 
 	<ItemGroup>
