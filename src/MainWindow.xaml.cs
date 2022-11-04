@@ -8,30 +8,25 @@ using ToDoListApp.Exceptions;
 
 namespace ToDoListApp
 {
-    /// <summary>
-    /// Interaction Logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private BindingList<ToDoModel> _toDoDataList;
-        private readonly IOService _ioService;
 
         public MainWindow()
         {
             InitializeComponent();
-            this._ioService = new IOService();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                this._ioService.CreateFileIfItDoesNotExists();
-                this._toDoDataList = this._ioService.LoadData();
+                ToDoListIOService.CreateFileIfItDoesNotExists();
+                this._toDoDataList = ToDoListIOService.LoadData();
             }
             catch(Exception ex)
             {
-                ExceptionDisplayer.DisplayException(ex);
+                ExceptionDisplay.DisplayException(ex);
                 base.Close();
             }
 
@@ -41,21 +36,21 @@ namespace ToDoListApp
 
         private void ToDoDataList_ListChanged(object sender, ListChangedEventArgs e)
         {
-            if (this.ListChangedEventIsTriggered(e))
+            if (ListChangedEventIsTriggered(e))
             {
                 try
                 {
-                    this._ioService.SaveData(sender);
+                    ToDoListIOService.SaveData(sender);
                 }
                 catch (Exception ex)
                 {
-                    ExceptionDisplayer.DisplayException(ex);
+                    ExceptionDisplay.DisplayException(ex);
                     base.Close();
                 }
             }
         }
 
-        private bool ListChangedEventIsTriggered(ListChangedEventArgs e)
+        private static bool ListChangedEventIsTriggered(ListChangedEventArgs e)
         {
             return e.ListChangedType == ListChangedType.ItemAdded ||
                 e.ListChangedType == ListChangedType.ItemDeleted ||

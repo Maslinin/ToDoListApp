@@ -3,11 +3,11 @@ using System.Globalization;
 
 namespace ToDoListApp.Culture
 {
-    internal static class CultureCustomizer
+    internal static class CultureCustomize
     {
         public static void SetRuCulture()
         {
-            var cultureInfo = new CultureInfo("ru-RU");
+            var cultureInfo = CultureInfo.CurrentCulture;
 
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
