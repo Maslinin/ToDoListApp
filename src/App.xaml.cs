@@ -10,7 +10,7 @@ namespace ToDoListApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            CultureCustomize.SetRuCulture();
+            CultureCustomizer.SetCurrentCulture();
 
             base.OnStartup(e);
         }

@@ -3,9 +3,9 @@ using System.Globalization;
 
 namespace ToDoListApp.Culture
 {
-    internal static class CultureCustomize
+    internal static class CultureCustomizer
     {
-        public static void SetRuCulture()
+        public static void SetCurrentCulture()
         {
             var cultureInfo = CultureInfo.CurrentCulture;
 
