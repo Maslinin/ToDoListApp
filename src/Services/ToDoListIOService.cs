@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Newtonsoft.Json;
 using ToDoListApp.Models;
 
-namespace ToDoListApp.IOServices
+namespace ToDoListApp.Services
 {
     internal static class ToDoListIOService
     {

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="clr-namespace:ToDoListApp.Models" d:DataContext="{d:DesignInstance Type=model:ToDoModel}"
         mc:Ignorable="d"
-        Title="To Do List" Height="600" Width="1030" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="..\NotePad.ico" Topmost="True">
+        Title="To Do List" Height="600" Width="1030" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="NotePad.ico" Topmost="True">
         
     <Grid>
         <DataGrid x:Name="DgToDoList" FontSize="15" FontWeight="Bold" Margin="10" AutoGenerateColumns="False" SelectionChanged="DgToDoList_SelectionChanged">

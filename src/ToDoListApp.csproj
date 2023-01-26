@@ -1,17 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<ApplicationIcon>NotePad.ico</ApplicationIcon>
 		<StartupObject>ToDoListApp.App</StartupObject>
-		
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <ApplicationDefinition Include="src\App.xaml" />
-	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="NotePad.ico">
