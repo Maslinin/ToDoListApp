@@ -4,4 +4,4 @@
 GUI Notes Application.
 
 
-![Screenshot of ToDoListApp](https://github.com/Maslinin/ToDoListApp/raw/master/screenshot.PNG "Screenshot of ToDoListApp")
+![Screenshot of ToDoListApp](https://github.com/Maslinin/ToDoListApp/raw/master/screenshot.png "Screenshot of ToDoListApp")
